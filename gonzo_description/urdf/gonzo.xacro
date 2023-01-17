@@ -1,0 +1,366 @@
+<?xml version="1.0" ?>
+<robot name="gonzo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find gonzo_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find gonzo_description)/urdf/gonzo.trans" />
+<xacro:include filename="$(find gonzo_description)/urdf/gonzo.gazebo" />
+
+<link name="base_link">
+</link>
+
+<link name="chassis_link">
+  <inertial>
+    <origin xyz="0.004369403453275925 -7.02165131943858e-05 0.06024663017842304" rpy="0 0 0"/>
+    <mass value="0.20273197769577378"/>
+    <inertia ixx="0.000438" iyy="0.000482" izz="0.000751" ixy="0.0" iyz="-0.0" ixz="7e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_tyre">
+  <inertial>
+    <origin xyz="-9.273384193181355e-08 -0.017748789854178187 -5.2862379126827896e-08" rpy="0 0 0"/>
+    <mass value="0.009430614326367688"/>
+    <inertia ixx="5e-06" iyy="9e-06" izz="5e-06" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0475 -0.0347 -0.067225" rpy="${-pi/2} 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/right_tyre.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0475 -0.0347 -0.067225" rpy="${-pi/2} 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/right_tyre.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel">
+  <inertial>
+    <origin xyz="3.968741960069799e-09 -0.01469275991633777 -1.7434994024900785e-08" rpy="0 0 0"/>
+    <mass value="0.012389434297757225"/>
+    <inertia ixx="3e-06" iyy="5e-06" izz="3e-06" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0475 -0.0347 -0.067225" rpy="${-pi/2} 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/right_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0475 -0.0347 -0.067225" rpy="${-pi/2} 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/right_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel">
+  <inertial>
+    <origin xyz="-7.785304803609172e-09 0.009692764310584537 6.360168114394327e-09" rpy="0 0 0"/>
+    <mass value="0.01238944475891587"/>
+    <inertia ixx="3e-06" iyy="5e-06" izz="3e-06" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0475 0.0347 -0.067225" rpy="${pi/2} 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/left_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0475 0.0347 -0.067225" rpy="${pi/2} 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/left_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_tyre">
+  <inertial>
+    <origin xyz="9.273384204283586e-08 0.017398360785967945 -5.286237849538855e-08" rpy="0 0 0"/>
+    <mass value="0.009430614326368155"/>
+    <inertia ixx="5e-06" iyy="9e-06" izz="5e-06" ixy="-0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0475 0.0347 -0.067225" rpy="${pi/2} 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/left_tyre.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0475 0.0347 -0.067225" rpy="${pi/2} 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/left_tyre.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_motor">
+  <inertial>
+    <origin xyz="4.7331206576989304e-07 0.0266233771435831 -1.3780643293159756e-14" rpy="0 0 0"/>
+    <mass value="0.06961662757238829"/>
+    <inertia ixx="2e-05" iyy="5e-06" izz="2e-05" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0475 0.0601 -0.0347" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/right_motor.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0475 0.0601 -0.0347" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/right_motor.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_motor">
+  <inertial>
+    <origin xyz="4.7331206576295415e-07 -0.0266233771435831 1.3787582187063663e-14" rpy="0 0 0"/>
+    <mass value="0.06961662757238826"/>
+    <inertia ixx="2e-05" iyy="5e-06" izz="2e-05" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0475 -0.0599 -0.0347" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/left_motor.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0475 -0.0599 -0.0347" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/left_motor.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="caster_wheel">
+  <inertial>
+    <origin xyz="-7.301104165691186e-14 0.01039999999999995 -4.344167282410022e-07" rpy="0 0 0"/>
+    <mass value="0.004208687504738151"/>
+    <inertia ixx="0.0" iyy="0.0" izz="0.0" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.063 0.0 -0.013814" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.063 0.0105 -0.013814" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/caster_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="caster_holder">
+  <inertial>
+    <origin xyz="-0.004533693929697581 0.00038962873399884824 -0.00825449347985955" rpy="0 0 0"/>
+    <mass value="0.020651902025180708"/>
+    <inertia ixx="2e-06" iyy="2e-06" izz="3e-06" ixy="0.0" iyz="0.0" ixz="-1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.051 0.0001 -0.034814" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/caster_holder.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.051 0.0001 -0.034814" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/caster_holder.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="caster_base">
+  <inertial>
+    <origin xyz="-3.863839803663893e-12 9.999999823247428e-05 -0.059707403308328987" rpy="0 0 0"/>
+    <mass value="0.009385654757274695"/>
+    <inertia ixx="1e-06" iyy="1e-06" izz="2e-06" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.051 0.0002 -0.0954" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/caster_base.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.051 0.0002 -0.0954" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/caster_base.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="battery_link">
+  <inertial>
+    <origin xyz="0.05033140765960479 -1.9995749077599944e-07 0.011550017871800405" rpy="0 0 0"/>
+    <mass value="0.17953621749161505"/>
+    <inertia ixx="8.3e-05" iyy="0.000332" izz="0.000408" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.051 0.0001 -0.0477" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/battery_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.051 0.0001 -0.0477" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/battery_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="raspberry">
+  <inertial>
+    <origin xyz="0.09956176838106731 -0.013714415462667086 0.03152151823198129" rpy="0 0 0"/>
+    <mass value="0.03013771185217864"/>
+    <inertia ixx="1.9e-05" iyy="8e-06" izz="2.6e-05" ixy="1e-06" iyz="2e-06" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.051 0.0001 -0.0477" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/raspberry.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.051 0.0001 -0.0477" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/raspberry.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="laser">
+  <inertial>
+    <origin xyz="0.031039338840954937 0.0003525144946507812 0.08371566276734518" rpy="0 0 0"/>
+    <mass value="0.05976986632824088"/>
+    <inertia ixx="2.4e-05" iyy="5.3e-05" izz="6.2e-05" ixy="-1e-06" iyz="-0.0" ixz="-8e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.005 0.0001 -0.15" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/laser.dae" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.051 0.0001 -0.0477" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://gonzo_description/meshes/laser.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="chassis_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  <parent link="base_link"/>
+  <child link="chassis_link"/>
+</joint>
+
+<joint name="right_tyre_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  <parent link="right_wheel"/>
+  <child link="right_tyre"/>
+</joint>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="0.0 -0.007125 0.0" rpy="${pi/2} 0 0"/>
+  <parent link="right_motor"/>
+  <child link="right_wheel"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+</joint>
+
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="0.0 0.007125 0.0" rpy="${-pi/2} 0 0"/>
+  <parent link="left_motor"/>
+  <child link="left_wheel"/>
+  <axis xyz="0.0 0.0 1.0"/>
+</joint>
+
+<joint name="left_tyre_joint" type="fixed">
+  <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+  <parent link="left_wheel"/>
+  <child link="left_tyre"/>
+</joint>
+
+<joint name="right_motor_joint" type="fixed">
+  <origin xyz="0.0475 -0.06 0.0347" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_motor"/>
+</joint>
+
+<joint name="left_motor_joint" type="fixed">
+  <origin xyz="0.0475 0.06 0.0347" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_motor"/>
+</joint>
+
+<joint name="caster_wheel_joint" type="continuous">
+  <origin xyz="-0.012 -0.0 -0.021" rpy="0 0 0"/>
+  <parent link="caster_holder"/>
+  <child link="caster_wheel"/>
+  <axis xyz="0.0 -1.0 -0.0"/>
+</joint>
+
+<joint name="caster_holder_joint" type="continuous">
+  <origin xyz="0.0 0.0001 -0.060586" rpy="0 0 0"/>
+  <parent link="caster_base"/>
+  <child link="caster_holder"/>
+  <axis xyz="0.0 -0.0 1.0"/>
+</joint>
+
+<joint name="caster_base_joint" type="fixed">
+  <origin xyz="-0.051 -0.0002 0.0954" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="caster_base"/>
+</joint>
+
+<joint name="battery_joint" type="fixed">
+  <origin xyz="-0.051 -0.0001 0.0477" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="battery_link"/>
+</joint>
+
+<joint name="raspberrypi_joint" type="fixed">
+  <origin xyz="-0.051 -0.0001 0.0477" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="raspberry"/>
+</joint>
+
+<joint name="laser_joint" type="fixed">
+  <origin xyz="-0.005 -0.0001 0.15" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="laser"/>
+</joint>
+
+</robot>
