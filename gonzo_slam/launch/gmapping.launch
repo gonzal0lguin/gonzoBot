@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="scan_topic"  default="/gonzo/sensors/lidar/scan" />
+  <arg name="use_rviz"    default="true" />
+
+    <group if="$(arg use_rviz)">
+        <node pkg="rviz" type="rviz" name="rviz"/>
+    </group>
+
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
+    <remap from="scan" to="$(arg scan_topic)" />
+    <rosparam file="$(find gonzo_slam)/params/gmapping.yaml" command="load" />
+  </node>
+
+</launch>

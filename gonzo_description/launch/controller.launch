@@ -2,10 +2,12 @@
 
 <rosparam file="$(find gonzo_description)/control/controller.yaml" command="load" />
 <node name="controller_spawner" pkg="controller_manager" type="spawner"
-      respawn="false" output="screen" args="joint_state_controller mobile_base_controller" />
+      respawn="false" output="screen" args="mobile_base_controller" />
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen"/>
 
 <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
-  <remap from="/joint_states" to="/gonzo/joint_states"/>
+  <!-- <remap from="/joint_states" to="/gonzo/joint_states"/> -->
 </node>
 
 </launch>

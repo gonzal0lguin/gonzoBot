@@ -8,7 +8,7 @@
   </joint>
   <actuator name="right_wheel_motor">
     <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    <mechanicalReduction>7</mechanicalReduction>
+    <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
@@ -19,17 +19,17 @@
   </joint>
   <actuator name="left_wheel_motor">
     <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-    <mechanicalReduction>7</mechanicalReduction>
+    <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
 <!-- <transmission name="caster_wheel_joint_tran">
-  <type>transmission_interface/SimpleTransmission</type>
+  <type>transmission_interface/</type>
   <joint name="caster_wheel_joint">
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
   </joint>
   <actuator name="caster_wheel_joint_actr">
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
@@ -37,10 +37,10 @@
 <transmission name="caster_holder_joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
   <joint name="caster_holder_joint">
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
   </joint>
   <actuator name="caster_holder_joint_actr">
-    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission> -->
