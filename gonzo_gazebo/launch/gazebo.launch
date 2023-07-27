@@ -1,21 +1,28 @@
 <?xml version="1.0"?>
 
 <launch>
-    <arg name="x" default="0.0" />
-    <arg name="y" default="0.0" />
-    <arg name="z" default="0.0" />
-    <arg name="rviz" default="true" />
-
-    <arg name="model" default="$(find gonzo_description)/urdf/gonzo.xacro"/>
+    <arg name="x"         default="0.0" />
+    <arg name="y"         default="0.0" />
+    <arg name="z"         default="0.0" />
+    <arg name="rviz"      default="true" />
+    <arg name="gui"       default="true"/>
+    <arg name="pasued"    default="false"/>
+    <arg name="model"     default="$(find gonzo_description)/urdf/gonzo.xacro"/>
+    <arg name="worldname" default="house"/>
+    <arg name="worldfile" default="$(find gonzo_gazebo)/worlds/$(arg worldname).world"/>
+    
+    
     <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>  
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="debug" value="false" />
-        <arg name="gui" value="true" />
-        <arg name="paused" value="false"/>
+        <arg name="debug"        value="false" />
+        <arg name="gui"          value="$(arg gui)" />
+        <arg name="paused"       value="false"/>
         <arg name="use_sim_time" value="true"/>
-        <arg name="headless" value="false"/>
-        <arg name="verbose" value="true"/>
+        <arg name="headless"     value="false"/>
+        <arg name="verbose"      value="true"/>
+        <!-- <arg name="world_name"   value="$(arg worldfile)"/> -->
+        
     </include>
 
     <!--Launch Gazebo Simulator-->
@@ -30,7 +37,12 @@
     <node name="controller_spawner" pkg="controller_manager" type="spawner"
           respawn="false" output="screen" args="mobile_base_controller joint_state_controller" />
 
-    <node name="rviz" pkg="rviz" type="rviz"
+    <group if="$(arg rviz)">
+        <node name="rviz" pkg="rviz" type="rviz"
           args="-d $(find gonzo_gazebo)/rviz/visualization.rviz"/>
+    </group>
+
+    <node pkg="tf" type="static_transform_publisher" name="static_world_to_odom_publisher" 
+    args="$(arg x) $(arg y)  $(arg z) 0 0 0 /world /odom 50"/>
 
 </launch>
