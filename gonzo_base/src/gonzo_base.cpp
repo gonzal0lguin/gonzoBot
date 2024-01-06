@@ -1,7 +1,8 @@
 #include <ros/ros.h>
-#include <gonzo_base/gonzo_hardware_interface.h>
+#include <gonzo_base/gonzo_hw_interface.h>
 #include <controller_manager/controller_manager.h>
  
+
 int main(int argc, char **argv)
 {
     // Initialize the ROS node
@@ -10,7 +11,7 @@ int main(int argc, char **argv)
     
     // Create an instance of your robot so that this instance knows about all 
     // the resources that are available.
-    gonzo_base::DiffBotHWInterface Gonzo(nh);
+    gonzo_base::GonzoHWInterface Gonzo(nh);
  
     // Create an instance of the controller manager and pass it the robot, 
     // so that it can handle its resources.
