@@ -2,18 +2,23 @@
 #include <ros.h>
 #include <base_controller.h>
 #include <motor_driver.h>
+#include <batteries.h>
 
+int battery_pins[3] = {26, 27, 28};
 
-ros::NodeHandle nh;
+Battery battery(battery_pins);
 MotorDriver motors(false);
-BaseController base_controller(&motors);
+BaseController base_controller(&motors, &battery);
 
 // Wrapper for the driver interrupt functions
 // I use this shitty method because I suck at c++
 void motor_left_isr_wrapper()  { motors.motor_left_isr(); }
 void motor_right_isr_wrapper() { motors.motor_right_isr(); }
 
+// ROS 
+ros::NodeHandle nh;
 ros::Time last_control_t = nh.now();
+ros::Time last_battery_t = nh.now();
 
 void setup() {
   nh.initNode();
@@ -24,6 +29,8 @@ void setup() {
 
   base_controller.setup(nh);
   base_controller.init(nh);
+  // battery.init(nh);
+
 
   nh.loginfo("Done Initializing Gonzo's Base Controller!");
 
@@ -35,8 +42,12 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
+
   motors.update_encoders(nh);
   ros::Duration delta_control_t = nh.now() - last_control_t;
+  ros::Duration delta_battery_t = nh.now() - last_battery_t;
+  
+  // Check robot state
   if (delta_control_t.toSec() >= 1.0 / base_controller.control_rate)
   {
     base_controller.read(nh);
@@ -46,7 +57,12 @@ void loop() {
     last_control_t = nh.now();
   }  
 
+  //Check battery states
+  if (delta_battery_t.toSec()>= 1.0 / battery.update_rate)
+  {
+    base_controller.check_battery_state(nh.now());
+    last_battery_t = nh.now();
+  }
+
   nh.spinOnce();
-//   motors.set_speed_pwm(1, 255);
-//   motors.set_speed_pwm(0, 255);
 }
